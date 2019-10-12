@@ -11,15 +11,19 @@ print(p)
 head(p)
 
 x<-p[[1]]
-x[1:2,5,5]
+x[1:2,,]
 
 
 library("tidyverse")
-out<-read_csv("out.csv")
+out<-read_csv("out.csv",na="")[,-1]
 
 names(out)<-c("cn",paste0("v",1:75))
 
 library("class")
 tst=out%>%sample_n(10)
 
-knn(out[,2:76],tst[,2:76],cl=out$cn)
+
+knn(out[,2:76],out[,2:76],cl=out$cn)
+
+
+
